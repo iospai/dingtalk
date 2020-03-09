@@ -11,4 +11,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  def run_cli(exec = './bin/dingtalk', input)
+    cmd = %Q(echo \'#{input}\'|bundle exec #{exec})
+    output = Open3.popen3(cmd) {|stdin, stdout, stderr, wait_thr| stdout.read }
+  end
 end
