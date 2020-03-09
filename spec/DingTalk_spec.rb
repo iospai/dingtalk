@@ -10,6 +10,6 @@ RSpec.describe DingTalk do
   it "发送一个文本消息" do
     message = '这是一条测试消息，来自 dingtalk-cli。'
     cli_output = run_cli('./bin/dingtalk', message)
-    expect(cli_output).to eq("11\n")
+    expect(cli_output).to eq("\"Ok\"\n")
   end
 end

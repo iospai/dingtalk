@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts "11"
+require 'dingtalk'
+
+DingTalk::Command.run(ARGV)
