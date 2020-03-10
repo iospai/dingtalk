@@ -17,9 +17,9 @@ module DingTalk
 
       def self.options
         [
-          %w(--title=XXX 消息内容。如果太长只会部分展示。),
-          %w(--link=http://xxx.com 点击消息跳转的URL。),
-          %w(--pic=http://xxx.com/icon.png 图片URL。),
+          %w(--title=`title` 消息内容。如果太长只会部分展示。),
+          %w(--link=`link` 点击消息跳转的URL。),
+          %w(--pic=`pic` 图片URL。),
         ].concat(super)
       end
 

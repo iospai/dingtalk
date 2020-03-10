@@ -17,8 +17,8 @@ module DingTalk
 
       def self.options
         [
-          %w(--title=XXX 消息内容。如果太长只会部分展示。),
-          %w(--buttons=JSON数组 按钮的信息`[{ "title": "xxx", "url": "https://xxx.com", "pic": "https://xxx.com/" }]`),
+          %w(--title=`title` 消息内容。如果太长只会部分展示。),
+          %w(--buttons=`buttons` JSON数组\ 按钮的信息`[{ "title": "xxx", "url": "https://xxx.com", "pic": "https://xxx.com/" }]`),
           %w(--orientation [可选]按钮是否按钮横向排列),
           %w(--hide [可选]是否隐藏发消息者头像),
         ].concat(super)

@@ -17,7 +17,7 @@ module DingTalk
 
       def self.options
         [
-          %w(--at=XXX [可选]被@人的手机号(在content里添加@人的手机号)，多个手机号以英文逗号（`,`）分隔。),
+          %w(--at=`at` [可选]被@人的手机号(在content里添加@人的手机号)，多个手机号以英文逗号（`,`）分隔。),
           %w(--all [可选]@所有人),
         ].concat(super)
       end

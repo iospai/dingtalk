@@ -17,7 +17,7 @@ module DingTalk
     def self.options
       [
         %w(--token=`token` 自定义机器人access_token),
-        %w(--token=`secret` 自定义机器人加签密钥),
+        %w(--secret=`secret` 自定义机器人加签密钥),
       ].concat(super)
     end
 
