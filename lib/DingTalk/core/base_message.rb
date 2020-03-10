@@ -7,7 +7,6 @@ module DingTalk
       LINK = 'link'.freeze
       MARKDOWN = 'markdown'.freeze
       ACTION_CARD = 'actionCard'.freeze # 整体跳转ActionCard类型
-      ACTION_CARD2 = 'actionCard'.freeze # 独立跳转ActionCard类型
       FEED_CARD = 'feedCard'.freeze
     end
 

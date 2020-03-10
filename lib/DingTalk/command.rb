@@ -3,6 +3,10 @@ require 'claide'
 module DingTalk
   class Command < CLAide::Command
     require 'DingTalk/command/text'
+    require 'DingTalk/command/link'
+    require 'DingTalk/command/markdown'
+    require 'DingTalk/command/action_card'
+    require 'DingTalk/command/feed_card'
 
     self.abstract_command = true
     self.command = 'dingtalk'

@@ -1,9 +1,9 @@
 require_relative '../utils/http_helper'
 
-module DingTalk
+module Markdown
   class Command
-    class Text < Command
-      self.summary = '发送text类型消息'
+    class Link < Command
+      self.summary = '发送link类型消息'
 
       self.description = <<-DESC
           发送text类型消息，消息内容为`CONTENT`
@@ -15,6 +15,7 @@ module DingTalk
 
       def self.options
         [
+          %w(--title=XXX 消息内容。如果太长只会部分展示。),
           %w(--at=XXX [可选]被@人的手机号(在content里添加@人的手机号)，多个手机号以英文逗号（`,`）分隔。),
           %w(--all [可选]@所有人),
         ].concat(super)
@@ -22,6 +23,7 @@ module DingTalk
 
       def initialize(argv)
         @content = argv.shift_argument
+        @title = argv.option('title');
         at_str = argv.option('at');
         @at_mobiles = []
         if at_str then
@@ -35,11 +37,12 @@ module DingTalk
 
       def validate!
         super
+        help! 'A message title is required.' unless @title
         help! 'A message content is required.' unless @content
       end
 
       def run
-        res = DingTalk::HttpHelper.send_text(@content, @at_mobiles, @is_at_all )
+        res = DingTalk::HttpHelper.send_markdown(@title, @content, @at_mobiles, @is_at_all)
         puts res
       end
 

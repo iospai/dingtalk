@@ -5,7 +5,6 @@ require_relative '../core/text'
 require_relative '../core/link'
 require_relative '../core/markdown'
 require_relative '../core/action_card'
-require_relative '../core/action_card2'
 require_relative '../core/feed_card'
 
 module DingTalk
@@ -38,11 +37,14 @@ module DingTalk
     end
 
     def self.send_action_card(title, text, single_title, single_url, btn_orientation = '0', hide_avatar = '0')
-      send_http DingTalk::Message::ActionCard.new(title, text, single_title, single_url, btn_orientation, hide_avatar)
+      buttons = [
+        DingTalk::Message::ActionCardButton.new(single_title, single_url)
+      ]
+      send_http DingTalk::Message::ActionCard.new(title, text, buttons, btn_orientation, hide_avatar)
     end
 
     def self.send_action_card2(title, text, buttons, btn_orientation = '0', hide_avatar = '0')
-      send_http DingTalk::Message::ActionCard2.new(title, text, buttons, btn_orientation, hide_avatar)
+      send_http DingTalk::Message::ActionCard.new(title, text, buttons, btn_orientation, hide_avatar)
     end
 
     def self.send_feed_card(links)
