@@ -31,7 +31,7 @@ module DingTalk
       end
 
       def build_message
-        super.merge do
+        super.merge(
           {
             :text => {
               :content => @content
@@ -41,7 +41,7 @@ module DingTalk
               :isAtAll => @is_at_all
             }
           }
-        end
+        )
       end
     end
   end

@@ -31,13 +31,13 @@ module DingTalk
       end
 
       def build_message
-        super.merge do
+        super.merge(
           {
             :feedCard => {
               :links => @links.map { | link | link.build_message }
             }
           }
-        end
+        )
       end
     end
 
@@ -46,7 +46,7 @@ module DingTalk
 
       attr_accessor :title, :pic_url, :message_url
 
-      def initialize(title='', pic_url='', message_url='')
+      def initialize(title, pic_url, message_url)
         @title = title
         @pic_url = pic_url
         @message_url = message_url

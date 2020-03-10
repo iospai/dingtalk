@@ -34,7 +34,7 @@ module DingTalk
       end
 
       def build_message
-        super.merge do
+        super.merge(
           {
             :markdown => {
               :title => @title,
@@ -45,7 +45,7 @@ module DingTalk
               :isAtAll => @is_at_all
             }
           }
-        end
+        )
       end
     end
   end

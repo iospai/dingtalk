@@ -27,7 +27,7 @@ module DingTalk
       end
 
       def build_message
-        super.merge do
+        super.merge(
           {
             :link => {
               :title => @title,
@@ -36,7 +36,7 @@ module DingTalk
               :messageUrl => @message_url,
             }
           }
-        end
+        )
       end
     end
   end

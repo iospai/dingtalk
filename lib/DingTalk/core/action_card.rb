@@ -32,7 +32,7 @@ module DingTalk
       end
 
       def build_message
-        super.merge do
+        super.merge(
           {
             :actionCard => {
               :title => @title,
@@ -43,7 +43,7 @@ module DingTalk
               :hideAvatar => @hide_avatar
             }
           }
-        end
+        )
       end
     end
   end
