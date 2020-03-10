@@ -51,7 +51,7 @@ module DingTalk
       end
 
       def run
-        res = DingTalk::HttpHelper.send_action_card2(@title, @text, @buttons, @btn_orientation, @hide_avatar, @token)
+        res = DingTalk::HttpHelper.send_action_card2(@title, @text, @buttons, @btn_orientation, @hide_avatar, @token, @secret)
         puts res.bold.green
       end
 

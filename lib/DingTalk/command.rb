@@ -17,11 +17,13 @@ module DingTalk
     def self.options
       [
         %w(--token=`token` 自定义机器人access_token),
+        %w(--token=`secret` 自定义机器人加签密钥),
       ].concat(super)
     end
 
     def initialize(argv)
       @token = argv.option('token')
+      @secret = argv.option('secret')
       super
     end
 

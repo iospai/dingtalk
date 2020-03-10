@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/iospai/dingtalk.svg?branch=master)](https://travis-ci.com/iospai/dingtalk)
-
+[![Build Status](https://travis-ci.com/iospai/dingtalk.svg?branch=master)](https://travis-ci.com/iospai/dingtalk)
 
 # DingTalk
 

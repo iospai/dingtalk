@@ -44,7 +44,7 @@ module DingTalk
       end
 
       def run
-        res = DingTalk::HttpHelper.send_markdown(@title, @content, @at_mobiles, @is_at_all, @token)
+        res = DingTalk::HttpHelper.send_markdown(@title, @content, @at_mobiles, @is_at_all, @token, @secret)
         puts res.bold.green
       end
 

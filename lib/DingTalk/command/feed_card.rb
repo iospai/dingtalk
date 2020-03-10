@@ -41,7 +41,7 @@ module DingTalk
       end
 
       def run
-        res = DingTalk::HttpHelper.send_feed_card(@links, @token)
+        res = DingTalk::HttpHelper.send_feed_card(@links, @token, @secret)
         puts res.bold.green
       end
 

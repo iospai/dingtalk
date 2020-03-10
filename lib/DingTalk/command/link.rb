@@ -39,7 +39,7 @@ module DingTalk
       end
 
       def run
-        res = DingTalk::HttpHelper.send_link(@title, @text, @pic_url, @message_url, @token)
+        res = DingTalk::HttpHelper.send_link(@title, @text, @pic_url, @message_url, @token, @secret)
         puts res.bold.green
       end
 
