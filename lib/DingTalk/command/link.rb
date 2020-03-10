@@ -1,3 +1,5 @@
+require 'colored2'
+
 require_relative '../utils/http_helper'
 
 module DingTalk
@@ -37,8 +39,8 @@ module DingTalk
       end
 
       def run
-        res = DingTalk::HttpHelper.send_link(@title, @text, @pic_url, @message_url)
-        puts res
+        res = DingTalk::HttpHelper.send_link(@title, @text, @pic_url, @message_url, @token)
+        puts res.bold.green
       end
 
     end

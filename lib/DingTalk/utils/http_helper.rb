@@ -9,11 +9,12 @@ require_relative '../core/feed_card'
 
 module DingTalk
   class HttpHelper
-    WEBHOOK_DINGTALK_URL = 'https://oapi.dingtalk.com/robot/send'.freeze
-    WEBHOOK_DINGTALK_TOKEN = 'b2bcaa01e512f1981774b96dcb6a289d998133f1598274b6f6c7e19a701ad0c5'.freeze
+    DINGTALK_URL = 'https://oapi.dingtalk.com/robot/send'.freeze
 
-    def self.send_http(params = {})
-      url = "#{ WEBHOOK_DINGTALK_URL }?access_token=#{ WEBHOOK_DINGTALK_TOKEN }"
+    def self.send_http(params = {}, token = nil)
+      access_token = token || ENV['DINGTALK_TOKEN']
+      return 'A message access token is required.' unless access_token
+      url = "#{ DINGTALK_URL }?access_token=#{ access_token }"
       http_client = Faraday.new() do |builder|
         builder.request  :url_encoded
         builder.request  :json
@@ -24,31 +25,31 @@ module DingTalk
       res.body
     end
 
-    def self.send_text(content, at_mobiles = [], is_at_all = false)
-      send_http DingTalk::Message::Text.new(content, at_mobiles, is_at_all)
+    def self.send_text(content, at_mobiles = [], is_at_all = false, token = nil)
+      send_http DingTalk::Message::Text.new(content, at_mobiles, is_at_all), token
     end
 
-    def self.send_link(title, text, pic_url, message_url = '')
-      send_http DingTalk::Message::Link.new(title, text, pic_url, message_url)
+    def self.send_link(title, text, pic_url, message_url = '', token = nil)
+      send_http DingTalk::Message::Link.new(title, text, pic_url, message_url), token
     end
 
-    def self.send_markdown(title, text, at_mobiles = [], is_at_all = false)
-      send_http DingTalk::Message::Markdown.new(title, text, at_mobiles, is_at_all)
+    def self.send_markdown(title, text, at_mobiles = [], is_at_all = false, token = nil)
+      send_http DingTalk::Message::Markdown.new(title, text, at_mobiles, is_at_all), token
     end
 
-    def self.send_action_card(title, text, single_title, single_url, btn_orientation = '0', hide_avatar = '0')
+    def self.send_action_card(title, text, single_title, single_url, btn_orientation = '0', hide_avatar = '0', token = nil)
       buttons = [
         DingTalk::Message::ActionCardButton.new(single_title, single_url)
       ]
-      send_http DingTalk::Message::ActionCard.new(title, text, buttons, btn_orientation, hide_avatar)
+      send_http DingTalk::Message::ActionCard.new(title, text, buttons, btn_orientation, hide_avatar), token
     end
 
-    def self.send_action_card2(title, text, buttons, btn_orientation = '0', hide_avatar = '0')
-      send_http DingTalk::Message::ActionCard.new(title, text, buttons, btn_orientation, hide_avatar)
+    def self.send_action_card2(title, text, buttons, btn_orientation = '0', hide_avatar = '0', token = nil)
+      send_http DingTalk::Message::ActionCard.new(title, text, buttons, btn_orientation, hide_avatar), token
     end
 
-    def self.send_feed_card(links)
-      send_http DingTalk::Message::FeedCard.new(links)
+    def self.send_feed_card(links, token = nil)
+      send_http DingTalk::Message::FeedCard.new(links), token
     end
 
   end

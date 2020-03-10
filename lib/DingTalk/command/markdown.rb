@@ -1,8 +1,10 @@
+require 'colored2'
+
 require_relative '../utils/http_helper'
 
-module Markdown
+module DingTalk
   class Command
-    class Link < Command
+    class Markdown < Command
       self.summary = '发送link类型消息'
 
       self.description = <<-DESC
@@ -42,8 +44,8 @@ module Markdown
       end
 
       def run
-        res = DingTalk::HttpHelper.send_markdown(@title, @content, @at_mobiles, @is_at_all)
-        puts res
+        res = DingTalk::HttpHelper.send_markdown(@title, @content, @at_mobiles, @is_at_all, @token)
+        puts res.bold.green
       end
 
     end

@@ -2,6 +2,7 @@ require 'claide'
 
 module DingTalk
   class Command < CLAide::Command
+
     require 'DingTalk/command/text'
     require 'DingTalk/command/link'
     require 'DingTalk/command/markdown'
@@ -13,8 +14,19 @@ module DingTalk
     self.version = DingTalk::VERSION
     self.description = '自定义钉钉群机器人 DingTalk for CLI'
 
+    def self.options
+      [
+        %w(--token=`token` 自定义机器人access_token),
+      ].concat(super)
+    end
+
+    def initialize(argv)
+      @token = argv.option('token')
+      super
+    end
+
     def run
-      p '开始执行 DingTalk for CLI'
+      # puts '开始执行 DingTalk for CLI'
     end
   end
 end

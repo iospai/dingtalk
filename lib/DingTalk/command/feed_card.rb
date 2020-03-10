@@ -1,3 +1,5 @@
+require 'colored2'
+
 require_relative '../utils/http_helper'
 
 module DingTalk
@@ -39,8 +41,8 @@ module DingTalk
       end
 
       def run
-        res = DingTalk::HttpHelper.send_feed_card(@links)
-        puts res
+        res = DingTalk::HttpHelper.send_feed_card(@links, @token)
+        puts res.bold.green
       end
 
     end
