@@ -7,9 +7,9 @@ RSpec.describe DingTalk do
   #   expect(false).to eq(true)
   # end
 
-  it "发送一个文本消息" do
-    message = '这是一条测试消息，来自 dingtalk-cli。'
-    cli_output = run_cli('./bin/dingtalk', message)
-    expect(cli_output).to eq("\"Ok\"\n")
-  end
+  # it "发送一个文本消息" do
+  #   message = '这是一条测试消息，来自 dingtalk-cli。'
+  #   cli_output = run_cli('./bin/dingtalk', message)
+  #   expect(cli_output).to eq("\"Ok\"\n")
+  # end
 end

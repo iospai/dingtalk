@@ -56,7 +56,7 @@ module DingTalk
       def build_message
         if @buttons.size == 1 then
           single_title = @buttons[0].title
-          single_url = @buttons[0].actionURL
+          single_url = @buttons[0].action_url
           super.merge(
             {
               :actionCard => {
