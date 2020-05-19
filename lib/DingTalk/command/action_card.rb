@@ -8,7 +8,7 @@ module DingTalk
       self.summary = '发送整体跳转ActionCard类型消息'
 
       self.description = <<-DESC
-          发送text类型消息，消息内容为`CONTENT`
+          发送ActionCard类型消息，消息内容为`CONTENT`
       DESC
 
       self.arguments = [

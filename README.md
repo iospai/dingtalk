@@ -40,9 +40,9 @@ Commands:
 
     + action-card      发送整体跳转ActionCard类型消息
     + feed-card        发送FeedCard类型消息
-    + link             发送link类型消息
-    + markdown         发送link类型消息
-    + text             发送text类型消息
+    + link             发送Link类型消息
+    + markdown         发送Markdown类型消息
+    + text             发送Text类型消息
 
 Options:
 
@@ -69,6 +69,17 @@ source ~/.bash_profile
 ```
 
 > 说明：配置的优先级为：参数配置 > 临时环境变量配置 > 全局环境变量配置
+## 功能列表
+
+- [x] 发送消息类型：Text
+- [x] 发送消息类型：Markdown
+- [x] 发送消息类型：Link
+- [x] 发送消息类型：FeedCard
+- [x] 发送消息类型：ActionCard
+- [x] 安全设置：自定义关键词
+- [x] 安全设置：加签
+- [x] 安全设置：IP地址（段）
+
 ## 开发
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

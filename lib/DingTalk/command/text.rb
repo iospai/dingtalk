@@ -5,10 +5,10 @@ require_relative '../utils/http_helper'
 module DingTalk
   class Command
     class Text < Command
-      self.summary = '发送text类型消息'
+      self.summary = '发送Text类型消息'
 
       self.description = <<-DESC
-          发送text类型消息，消息内容为`CONTENT`
+          发送Text类型消息，消息内容为`CONTENT`
       DESC
 
       self.arguments = [

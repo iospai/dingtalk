@@ -1,5 +1,9 @@
 require 'faraday';
 require 'faraday_middleware'
+require 'uri'
+require 'json'
+require 'base64'
+require 'openssl'
 
 require_relative '../core/text'
 require_relative '../core/link'
@@ -15,31 +19,23 @@ module DingTalk
       access_token = token || ENV['DINGTALK_TOKEN']
       access_secret = token || ENV['DINGTALK_SECRET']
       return 'A message access token is required.' unless access_token
-      if access_secret then
-        timestamp = "#{ Time.now.to_i * 1000 }\n#{ access_secret }"
-
-
-
-        # Long timestamp = System.currentTimeMillis();
-        # String stringToSign = timestamp + "\n" + secret;
-        # Mac mac = Mac.getInstance("HmacSHA256");
-        # mac.init(new SecretKeySpec(secret.getBytes("UTF-8"), "HmacSHA256"));
-        # byte[] signData = mac.doFinal(stringToSign.getBytes("UTF-8"));
-        # return URLEncoder.encode(new String(Base64.encodeBase64(signData)),"UTF-8");
-
-
-
-
+      if access_secret.nil? || access_secret.empty? then
+        uri = URI.parse("#{ DINGTALK_URL }?access_token=#{ access_token }")
+      else
+        timestamp = "#{(Time.now.to_f * 1000).to_i}"
+        content = "#{timestamp}\n#{access_secret}".encode("utf-8")
+        hash  = OpenSSL::HMAC.digest('sha256', access_secret, content)
+        sign = Base64.strict_encode64(hash)
+        uri = URI.parse("#{ DINGTALK_URL }?access_token=#{ access_token }&timestamp=#{ timestamp }&sign=#{ sign }")
       end
-      url = "#{ DINGTALK_URL }?access_token=#{ access_token }"
       http_client = Faraday.new() do |builder|
         builder.request  :url_encoded
         builder.request  :json
         builder.response :logger
         builder.adapter  :net_http
       end
-      res = http_client.post url, params.to_json, 'Content-Type' => 'application/json'
-      res.body
+      res = http_client.post uri, params.to_json, 'Content-Type' => 'application/json'
+      JSON::pretty_generate(JSON(res.body))
     end
 
     def self.send_text(content, at_mobiles = [], is_at_all = false, token = nil, secret = nil)

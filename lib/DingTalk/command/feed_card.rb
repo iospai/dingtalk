@@ -8,7 +8,7 @@ module DingTalk
       self.summary = '发送FeedCard类型消息'
 
       self.description = <<-DESC
-          发送text类型消息，消息内容为`LINK Array JSON`,格式：`[{ "title": "xxx", "pic": "https://xxx.com/icon.png", "link": "https://xxx.com/" }]`
+          发送FeedCard类型消息，消息内容为`LINK Array JSON`,格式：`[{ "title": "xxx", "pic": "https://xxx.com/icon.png", "link": "https://xxx.com/" }]`
       DESC
 
       self.arguments = [

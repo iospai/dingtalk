@@ -5,10 +5,10 @@ require_relative '../utils/http_helper'
 module DingTalk
   class Command
     class Markdown < Command
-      self.summary = '发送link类型消息'
+      self.summary = '发送Markdown类型消息'
 
       self.description = <<-DESC
-          发送text类型消息，消息内容为`CONTENT`
+          发送Markdown类型消息，消息内容为`CONTENT`
       DESC
 
       self.arguments = [
